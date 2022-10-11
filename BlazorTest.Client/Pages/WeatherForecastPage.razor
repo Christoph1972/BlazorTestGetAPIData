@@ -11,7 +11,7 @@
 
 @if (forecast == null)
 {
-    <p>No Todo Items found.</p>
+    <p>No Items found.</p>
 }
 else
 {
@@ -28,6 +28,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-       forecast = await Http.GetFromJsonAsync<WeatherForecast[]>("/api/WeatherForecast");
+       forecast = await Http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast");
     }
 }

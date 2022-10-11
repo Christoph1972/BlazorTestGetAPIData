@@ -1,0 +1,19 @@
+﻿@page "/value"
+
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
+@using BlazorTest.Shared
+@inject HttpClient Http
+
+<h3>ValuePage</h3>
+<h2>@myValue</h2>
+
+@code {
+    private string? myValue = "No value";
+
+    protected override async Task OnInitializedAsync()
+    {
+        myValue = await Http.GetStringAsync("api/value");
+    }
+}
