@@ -1,0 +1,33 @@
+﻿@page "/weatherforecast"
+
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Threading.Tasks
+@using BlazorTest.Shared
+@inject HttpClient Http
+
+<h3>Weather Forecast Page</h3>
+
+
+@if (forecast == null)
+{
+    <p>No Todo Items found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in forecast)
+        {
+            <li>@item.Summary</li>
+        }
+    </ul>
+}
+
+@code {
+    private WeatherForecast[]? forecast;
+
+    protected override async Task OnInitializedAsync()
+    {
+       forecast = await Http.GetFromJsonAsync<WeatherForecast[]>("/api/WeatherForecast");
+    }
+}
